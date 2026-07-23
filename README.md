@@ -10,6 +10,7 @@ A high-performance, responsive portfolio built with **Astro**, **Tailwind CSS**,
 ## 🌟 Highlights
 - **Zero-JS by Default:** Leveraging Astro's islands architecture.
 - **JSON-First:** Update your information in `src/data/` without touching any code.
+- **SEO Ready:** Auto-generated `sitemap.xml` & `robots.txt`, full Open Graph/Twitter Card support and JSON-LD structured data.
 - **Built-in Themes**: Switch between multiple professional color palettes and light/dark modes from a single config file.
 - **Fully Responsive:** Optimized for mobile, tablet, and desktop.
 - **Performance:** Optimized for perfect Lighthouse scores.
@@ -67,10 +68,23 @@ export const SITE_CONFIG = {
 └── tsconfig.json        # Typescript configuration
 ```
 
+### 🔍 SEO Configuration
+All SEO metadata is driven from `src/data/home.json`. Update the fields below to improve your search engine and social media visibility:
+
+| Field | Description |
+| :------------ | :----------------------------------------------------------- |
+| `siteUrl` | Your deployed domain (e.g. `https://yourname.dev`). Required for canonical URLs, sitemap, and absolute OG image links. |
+| `lang` | Page language code (e.g. `en`, `fr`, `de`). Sets the `<html lang>` attribute. |
+| `jobTitle` | Your role — included in the JSON-LD structured data shown to Google. |
+| `keywords` | Comma-separated keywords for the `<meta name="keywords">` tag. |
+| `twitterHandle` | Your Twitter/X username (with or without `@`). Enables Twitter Card attribution. |
+| `ogImageUrl` | Path to your Open Graph preview image. Use a **1200×630 px** image for best results across all platforms. |
+
+> **Automatic:** `sitemap-index.xml` and `robots.txt` are generated at build time — no manual editing needed.
 
 
 
-#### Useful commands and links for reference:
+### 📚 Useful commands and links for reference:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
