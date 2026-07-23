@@ -11,6 +11,7 @@ interface Props {
   twitterHandle?: string;
   personName?: string;
   jobTitle?: string;
+  lang?: string;
   socials?: { name: string; url: string }[];
 }
 
@@ -23,6 +24,7 @@ const {
   twitterHandle = '',
   personName = '',
   jobTitle = '',
+  lang = 'en',
   socials = [],
 } = Astro.props;
 
@@ -30,10 +32,13 @@ const baseTheme = SITE_CONFIG.baseTheme;
 const defaultTheme = `${baseTheme}-dark`;
 
 // Canonical & OG absolute URLs
-const canonicalUrl = siteUrl ? siteUrl.replace(/\/$/, '') + '/' : '';
-const ogImage = siteUrl && ogImageUrl
-  ? siteUrl.replace(/\/$/, '') + ogImageUrl
-  : ogImageUrl;
+const resolvedSiteUrl = siteUrl || Astro.site?.toString() || '';
+const canonicalUrl = resolvedSiteUrl 
+    ? resolvedSiteUrl.replace(/\/$/, '') + '/' 
+    : Astro.url.href;
+const ogImage = ogImageUrl
+    ? new URL(ogImageUrl, resolvedSiteUrl || Astro.url.origin).href
+    : '';
 
 // JSON-LD Person schema
 const sameAsUrls = socials
@@ -53,7 +58,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,15 +68,20 @@ const jsonLd = {
     <!-- PRIMARY META -->
     {description && <meta name="description" content={description} />}
     {keywords && <meta name="keywords" content={keywords} />}
+    {personName && <meta name="author" content={personName} />}
     <meta name="robots" content="index, follow" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={personName || title} />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
     <meta property="og:image:alt" content={`${personName || title} portfolio preview`} />
 
     <!-- TWITTER CARD -->
