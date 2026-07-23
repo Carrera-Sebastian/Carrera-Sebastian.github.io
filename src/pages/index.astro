@@ -8,14 +8,29 @@ import Contact from "../components/contact.astro";
 import Career from "../components/career.astro";
 import localData from '../data/home.json';
 
+interface Social {
+  name: string;
+  url: string;
+  icon: string;
+  showInContact: boolean;
+}
+
 interface ProfileData {
+  name: string;
   webpageTitle: string;
+  description?: string;
+  jobTitle?: string;
+  keywords?: string;
+  siteUrl?: string;
+  twitterHandle?: string;
+  ogImageUrl?: string;
+  socials: Social[];
 }
 
 const isApiLive = import.meta.env.PROD; // Auto true in production
 const BASE_URL = import.meta.env.PUBLIC_API_BASE_URL;
 
-let data: ProfileData; // data as ProfileData
+let data: ProfileData;
 
 if (isApiLive && BASE_URL) {
   try {
@@ -30,11 +45,31 @@ if (isApiLive && BASE_URL) {
   data = localData as ProfileData;
 }
 
-const { webpageTitle } = data;
+const {
+  name,
+  webpageTitle,
+  description,
+  jobTitle,
+  keywords,
+  siteUrl,
+  twitterHandle,
+  ogImageUrl,
+  socials,
+} = data;
 ---
 
-<Layout title={webpageTitle}>
-  	<Nav />
+<Layout
+  title={webpageTitle}
+  personName={name}
+  description={description}
+  jobTitle={jobTitle}
+  keywords={keywords}
+  siteUrl={siteUrl}
+  twitterHandle={twitterHandle}
+  ogImageUrl={ogImageUrl}
+  socials={socials}
+>
+  <Nav />
 	<Home />
 	<Career />
 	<Projects />

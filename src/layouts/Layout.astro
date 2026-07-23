@@ -4,12 +4,52 @@ import { SITE_CONFIG } from '../config.ts';
 
 interface Props {
   title: string;
+  description?: string;
+  keywords?: string;
+  siteUrl?: string;
+  ogImageUrl?: string;
+  twitterHandle?: string;
+  personName?: string;
+  jobTitle?: string;
+  socials?: { name: string; url: string }[];
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = '',
+  keywords = '',
+  siteUrl = '',
+  ogImageUrl = '/placeholder.jpeg',
+  twitterHandle = '',
+  personName = '',
+  jobTitle = '',
+  socials = [],
+} = Astro.props;
 
 const baseTheme = SITE_CONFIG.baseTheme;
 const defaultTheme = `${baseTheme}-dark`;
+
+// Canonical & OG absolute URLs
+const canonicalUrl = siteUrl ? siteUrl.replace(/\/$/, '') + '/' : '';
+const ogImage = siteUrl && ogImageUrl
+  ? siteUrl.replace(/\/$/, '') + ogImageUrl
+  : ogImageUrl;
+
+// JSON-LD Person schema
+const sameAsUrls = socials
+  .filter((s) => s.url && s.url !== '#' && s.url !== '')
+  .map((s) => s.url);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: personName || title,
+  ...(jobTitle ? { jobTitle } : {}),
+  ...(canonicalUrl ? { url: canonicalUrl } : {}),
+  ...(ogImage ? { image: ogImage } : {}),
+  ...(description ? { description } : {}),
+  ...(sameAsUrls.length ? { sameAs: sameAsUrls } : {}),
+};
 ---
 
 <!doctype html>
@@ -19,6 +59,31 @@ const defaultTheme = `${baseTheme}-dark`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <title>{title}</title>
+
+    <!-- PRIMARY META -->
+    {description && <meta name="description" content={description} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content="index, follow" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image:alt" content={`${personName || title} portfolio preview`} />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {twitterHandle && <meta name="twitter:site" content={`@${twitterHandle.replace(/^@/, '')}`} />}
+    {twitterHandle && <meta name="twitter:creator" content={`@${twitterHandle.replace(/^@/, '')}`} />}
+
+    <!-- JSON-LD STRUCTURED DATA -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- THEME TOGGLE SCRIPT -->
     <script is:inline define:vars={{ baseTheme, defaultTheme }}>

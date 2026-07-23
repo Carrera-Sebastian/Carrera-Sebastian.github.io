@@ -14,8 +14,8 @@ interface Social {
 interface ProfileData {
   name: string;
   photoUrl: string;
-  intro: string;
-  introHtml: string;
+  description: string;
+  descriptionHtml: string;
   resumeUrl: string;
   socials: Social[];
 }
@@ -38,7 +38,7 @@ if (isApiLive && BASE_URL) {
   data = localData as ProfileData;
 }
 
-const { name, photoUrl, intro, introHtml, resumeUrl, socials } = data;
+const { name, photoUrl, description, descriptionHtml, resumeUrl, socials } = data;
 const profileImage = await resolveAssetImage(photoUrl);
 ---
 
@@ -79,7 +79,7 @@ const profileImage = await resolveAssetImage(photoUrl);
     <br>
     <p 
       class="text-gray font-body text-lg leading-relaxed" 
-      set:html={intro} 
+      set:html={descriptionHtml} 
     />
   </div>
 
