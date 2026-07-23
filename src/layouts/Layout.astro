@@ -55,6 +55,9 @@ const jsonLd = {
   ...(description ? { description } : {}),
   ...(sameAsUrls.length ? { sameAs: sameAsUrls } : {}),
 };
+
+// 'en' -> 'en_US'
+const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
 ---
 
 <!doctype html>
@@ -74,7 +77,7 @@ const jsonLd = {
 
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content={personName || title} />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
