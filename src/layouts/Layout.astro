@@ -28,6 +28,7 @@ const {
   socials = [],
 } = Astro.props;
 
+
 const baseTheme = SITE_CONFIG.baseTheme;
 const defaultTheme = `${baseTheme}-dark`;
 
@@ -40,20 +41,34 @@ const ogImage = ogImageUrl
     ? new URL(ogImageUrl, resolvedSiteUrl || Astro.url.origin).href
     : '';
 
-// JSON-LD Person schema
+// JSON-LD Structured Data (WebSite + Person)
 const sameAsUrls = socials
   .filter((s) => s.url && s.url !== '#' && s.url !== '')
   .map((s) => s.url);
 
+const siteName = personName || title;
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: personName || title,
-  ...(jobTitle ? { jobTitle } : {}),
-  ...(canonicalUrl ? { url: canonicalUrl } : {}),
-  ...(ogImage ? { image: ogImage } : {}),
-  ...(description ? { description } : {}),
-  ...(sameAsUrls.length ? { sameAs: sameAsUrls } : {}),
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${canonicalUrl || resolvedSiteUrl}#website`,
+      'name': siteName,
+      'alternateName': [siteName, title],
+      'url': canonicalUrl || resolvedSiteUrl,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${canonicalUrl || resolvedSiteUrl}#person`,
+      'name': siteName,
+      ...(jobTitle ? { jobTitle } : {}),
+      ...(canonicalUrl ? { url: canonicalUrl } : {}),
+      ...(ogImage ? { image: ogImage } : {}),
+      ...(description ? { description } : {}),
+      ...(sameAsUrls.length ? { sameAs: sameAsUrls } : {}),
+    }
+  ]
 };
 
 // 'en' -> 'en_US'
@@ -65,7 +80,9 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <title>{title}</title>
 
     <!-- PRIMARY META -->
@@ -99,14 +116,23 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- THEME TOGGLE SCRIPT -->
+    <meta name="theme-color" content="#000000" id="theme-color-meta" />
     <script is:inline define:vars={{ baseTheme, defaultTheme }}>
       const savedTheme = localStorage.getItem('theme');
+      let activeTheme = defaultTheme;
 
       if (savedTheme && savedTheme.startsWith(baseTheme)) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else {
-        document.documentElement.setAttribute('data-theme', defaultTheme);
-        localStorage.setItem('theme', defaultTheme);
+        activeTheme = savedTheme;
+      }
+      
+      document.documentElement.setAttribute('data-theme', activeTheme);
+      localStorage.setItem('theme', activeTheme);
+
+      // Set mobile status bar mode
+      const isDark = activeTheme.endsWith('-dark');
+      const meta = document.getElementById('theme-color-meta');
+      if (meta) {
+        meta.setAttribute('content', isDark ? '#000000' : '#FFFFFF');
       }
     </script>
 
@@ -152,7 +178,6 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
     <script>
       const container = document.getElementById('matrix-container');
       const characters = "{}[]()<>/\=+*01;";
-      // const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@&%";
       const colors = ["#FF4500", "#32CD32", "#1E90FF", "#FFD700", "#8A2BE2", "#FF1493"];
 
       function createLetter() {
@@ -160,7 +185,6 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
 
         const span = document.createElement('span');
         const char = characters[Math.floor(Math.random() * characters.length)];
-        // const color = colors[Math.floor(Math.random() * colors.length)];
         const color = "var(--color-textrain)";
         
         const left = Math.random() * 100; 
@@ -258,22 +282,17 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
 
       window.addEventListener('scroll', handleScroll, { passive: true });
 
-      // toTopBtn?.addEventListener('click', () => {
-      //   window.scrollTo({ top: 0, behavior: 'smooth' });
-      // });
-
       toTopBtn?.addEventListener('click', () => {
       arrowIcon?.classList.add('launching');
 
       const startPosition = window.scrollY;
       const duration = 750;
       let startTime: number | null = null;
-      let requestID: number; // storing the ID here
+      let requestID: number;
 
       const stopAnimation = () => {
         cancelAnimationFrame(requestID);
         arrowIcon?.classList.remove('launching');
-        // Remove listeners once stopped
         window.removeEventListener('wheel', stopAnimation);
         window.removeEventListener('touchmove', stopAnimation);
       };
@@ -303,7 +322,6 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
 
       requestID = requestAnimationFrame(animation);
     });
-
     </script>
   </body>
 </html>
