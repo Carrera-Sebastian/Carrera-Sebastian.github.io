@@ -1,9 +1,10 @@
 {
   "categories": [
     {
-      "title": "Frontend",
+      "title": { "es": "Frontend", "en": "Frontend" },
       "skills": [
         { "name": "Angular", "level": 3, "icon": "skill-icons:angular-dark" },
+        { "name": "Ionic", "level": 3, "icon": "devicon:ionic" },
         { "name": "Next.js", "level": 2, "icon": "skill-icons:nextjs-dark" },
         { "name": "TypeScript", "level": 3, "icon": "skill-icons:typescript" },
         { "name": "JavaScript", "level": 3, "icon": "skill-icons:javascript" },
@@ -14,7 +15,7 @@
       ]
     },
     {
-      "title": "Backend & Tools",
+      "title": { "es": "Backend y herramientas", "en": "Backend & Tools" },
       "skills": [
         { "name": "Node.js", "level": 3, "icon": "skill-icons:nodejs-dark" },
         { "name": ".NET", "level": 3, "icon": "skill-icons:dotnet" },
@@ -24,8 +25,9 @@
       ]
     },
     {
-      "title": "Database",
+      "title": { "es": "Bases de datos", "en": "Database" },
       "skills": [
+        {"name": "Oracle PL/SQL", "level": 3, "icon": "devicon:oracle"},
         { "name": "PostgreSQL", "level": 3, "icon": "skill-icons:postgresql-dark" },
         { "name": "MongoDB", "level": 2, "icon": "skill-icons:mongodb" },
         { "name": "MySQL", "level": 3, "icon": "skill-icons:mysql-dark" }

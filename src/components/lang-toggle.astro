@@ -1,0 +1,58 @@
+---
+import { languages, otherLang, useTranslations, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Path of this same page in the other language. */
+  altUrl: string;
+}
+
+const { lang, altUrl } = Astro.props;
+const t = useTranslations(lang);
+const target = otherLang(lang);
+---
+
+<a
+  id="lang-toggle"
+  href={altUrl}
+  hreflang={target}
+  lang={target}
+  aria-label={t('lang.switchTo')}
+  title={languages[target].name}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M2 12h20"></path>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+  <span>{languages[target].label}</span>
+</a>
+
+<style>
+  #lang-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-maintext);
+    cursor: pointer;
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  #lang-toggle:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+  }
+
+  #lang-toggle span {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+</style>

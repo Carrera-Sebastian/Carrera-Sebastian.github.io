@@ -1,19 +1,26 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { pick, type Lang } from '../i18n/ui';
+
+type L<T> = T | Record<Lang, T>;
+
 interface Props {
   item: {
-    period: string;
-    role: string;
+    period: L<string>;
+    role: L<string>;
     company: string;
     url?: string;
+    /** Internal key — drives the icon and badge colour. Never displayed. */
     type: string;
-    description: string;
-    skills: string[];
+    typeLabel: L<string>;
+    description: L<string>;
+    skills: L<string[]>;
   };
   variant: 'mobile' | 'desktop-left' | 'desktop-right';
+  lang: Lang;
 }
 
-const { item, variant } = Astro.props;
+const { item, variant, lang } = Astro.props;
 
 const isMobile = variant === 'mobile';
 const isLeft = variant === 'desktop-left';
@@ -36,12 +43,12 @@ const headerRowClass = isLeft ? 'flex-row-reverse' : 'flex-row';
 <div class={`bg-accent/5 border border-accent/10 p-4 md:p-6 rounded-2xl hover:border-accent/40 hover:shadow-[0_0_30px_color-mix(in_srgb,var(--color-accent)_10%,transparent)] hover:scale-[1.01] transition-all duration-300 group ${alignmentClass}`}>
   {/* Period + type badge row */}
   <div class={`flex items-center gap-2 mb-1 ${headerRowClass}`}>
-    <span class="font-mono text-xs tracking-widest uppercase text-accent/75">{item.period}</span>
+    <span class="font-mono text-xs tracking-widest uppercase text-accent/75">{pick(item.period, lang)}</span>
     <span class={`inline-block text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${typeBadgeClass}`}>
-      {item.type}
+      {pick(item.typeLabel, lang)}
     </span>
   </div>
-  <h3 class="text-xl font-heading font-bold text-maintext mt-1">{item.role}</h3>
+  <h3 class="text-xl font-heading font-bold text-maintext mt-1">{pick(item.role, lang)}</h3>
   <p class="text-accent text-base font-semibold mb-4">
     {item.url ? (
       <a
@@ -58,9 +65,9 @@ const headerRowClass = isLeft ? 'flex-row-reverse' : 'flex-row';
       </a>
     ) : item.company}
   </p>
-  <p class="text-subtext font-body text-sm leading-relaxed mb-4">{item.description}</p>
+  <p class="text-subtext font-body text-sm leading-relaxed mb-4">{pick(item.description, lang)}</p>
   <div class={skillContainerClasses}>
-    {item.skills.map((skill: string) => (
+    {(pick(item.skills, lang) ?? []).map((skill: string) => (
       <span class={`rounded-md text-[10px] px-2 md:px-4 py-1 bg-accent/5 border border-accent/10 text-accent/80 group-hover:border-accent/40 group-hover:text-accent`}>{skill}</span>
     ))}
   </div>

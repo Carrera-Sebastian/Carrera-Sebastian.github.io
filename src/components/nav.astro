@@ -1,6 +1,18 @@
 ---
 import { Icon } from 'astro-icon/components';
 import ThemeToggle from './theme-toggle.astro';
+import LangToggle from './lang-toggle.astro';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Path of this same page in the other language. */
+  altUrl: string;
+}
+
+const { lang, altUrl } = Astro.props;
+const t = useTranslations(lang);
+
 interface NavItem {
   label: string;
   href: string;
@@ -9,22 +21,22 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    label: "Home",
+    label: t('nav.home'),
     href: "#home",
     icon: `mdi:home`,
   },
   {
-    label: "Career",
+    label: t('nav.career'),
     href: "#career",
     icon: `mdi:work`,
   },
   {
-    label: "Projects",
+    label: t('nav.projects'),
     href: "#projects",
     icon: `mdi:computer`,
   },
   {
-    label: "Skills",
+    label: t('nav.skills'),
     href: "#skills",
     icon: `mdi:chart-bar`,
   },
@@ -34,13 +46,14 @@ const navItems: NavItem[] = [
   //   icon: `mdi:message`,
   // },
   {
-    label: "Contact",
+    label: t('nav.contact'),
     href: "#contact",
     icon: `mdi:message`,
   }
 ];
 ---
-<div id="theme-toggle-wrapper" class="fixed top-4 right-4 z-50 md:top-4 md:right-4 reveal-content" style="animation-delay: 700ms;">
+<div id="theme-toggle-wrapper" class="fixed top-4 right-4 z-50 md:top-4 md:right-4 reveal-content flex items-center gap-0.5" style="animation-delay: 700ms;">
+  <LangToggle lang={lang} altUrl={altUrl} />
   <ThemeToggle />
 </div>
 

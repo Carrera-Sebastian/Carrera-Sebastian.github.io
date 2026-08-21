@@ -1,18 +1,36 @@
 {
+  "_i18n_comment": "Any text field can be either a plain string (same in both languages) or an object { \"es\": \"...\", \"en\": \"...\" }.",
   "name": "Sebastian Carrera",
   "photoUrl": "favicon.svg",
   "location": "Córdoba, Argentina",
-  "availability": "Available for hire",
-  "description": "Information Systems Engineer with full-stack development experience (Angular, Node.js, .NET). Focused on Oracle database administration, design, and performance tuning: diagnosing and resolving performance bottlenecks (indexing, execution plans, query rewriting) that significantly reduced production response times. Recent experience integrating generative AI tools (MCP protocol) into development workflows, with access control and security best practices. Analytical, methodical, and self-driven, focused on continuous improvement of processes and systems.",
-  "descriptionHtml": "Information Systems Engineer with full-stack development experience (Angular, Node.js, .NET). Focused on Oracle database administration, design, and performance tuning. Recent experience integrating generative AI tools (MCP protocol) into development workflows, with access control and security best practices. Analytical, methodical, and self-driven, focused on continuous improvement of processes and systems.",
-  "webpageTitle": "Sebastian Carrera| Software Engineer",
+  "availability": {
+    "es": "Disponible para trabajar",
+    "en": "Available for hire"
+  },
+  "description": {
+    "es": "Ingeniero en Sistemas de Información con experiencia en desarrollo full-stack (Angular, Node.js, .NET). Enfocado en administración, diseño y tuning de bases de datos Oracle: diagnóstico y resolución de cuellos de botella de performance (índices, planes de ejecución, reescritura de consultas) que redujeron significativamente los tiempos de respuesta en producción. Experiencia reciente integrando herramientas de IA generativa (protocolo MCP) en flujos de desarrollo, con control de accesos y buenas prácticas de seguridad. Analítico, metódico y autónomo, orientado a la mejora continua de procesos y sistemas.",
+    "en": "Information Systems Engineer with full-stack development experience (Angular, Node.js, .NET). Focused on Oracle database administration, design, and performance tuning: diagnosing and resolving performance bottlenecks (indexing, execution plans, query rewriting) that significantly reduced production response times. Recent experience integrating generative AI tools (MCP protocol) into development workflows, with access control and security best practices. Analytical, methodical, and self-driven, focused on continuous improvement of processes and systems."
+  },
+  "descriptionHtml": {
+    "es": "Ingeniero en Sistemas de Información con experiencia en desarrollo full-stack (Angular, Node.js, .NET). Enfocado en administración, diseño y tuning de bases de datos Oracle. Experiencia reciente integrando herramientas de IA generativa (protocolo MCP) en flujos de desarrollo, con control de accesos y buenas prácticas de seguridad. Analítico, metódico y autónomo, orientado a la mejora continua de procesos y sistemas.",
+    "en": "Information Systems Engineer with full-stack development experience (Angular, Node.js, .NET). Focused on Oracle database administration, design, and performance tuning. Recent experience integrating generative AI tools (MCP protocol) into development workflows, with access control and security best practices. Analytical, methodical, and self-driven, focused on continuous improvement of processes and systems."
+  },
+  "webpageTitle": {
+    "es": "Sebastian Carrera | Ingeniero en Sistemas",
+    "en": "Sebastian Carrera | Software Engineer"
+  },
   "resumeUrl": "https://drive.google.com/file/d/13rMVrdfLokcKBj7WrESlpoMXWzuK7BL1/view?usp=drive_link",
 
   "_seo_comment": "SEO fields — update these along with your personal info for best search engine visibility.",
-  "jobTitle": "Software Engineer - Full-stack Developer",
-  "keywords": "Sebastian Carrera, software engineer, Flutter, FastAPI, mobile development, portfolio",
-  "siteUrl": "https://Carrera-Sebastian.github.io",
-  "lang": "en",
+  "jobTitle": {
+    "es": "Ingeniero en Sistemas — Desarrollador Full-stack",
+    "en": "Software Engineer - Full-stack Developer"
+  },
+  "keywords": {
+    "es": "Sebastian Carrera, ingeniero en sistemas, desarrollador full-stack, Angular, Node.js, Oracle, Córdoba, portfolio",
+    "en": "Sebastian Carrera, software engineer, full-stack developer, Angular, Node.js, Oracle, Córdoba Argentina, portfolio"
+  },
+  "siteUrl": "https://carrera-sebastian.github.io",
   "twitterHandle": "",
   "ogImageUrl": "/placeholder.jpeg",
 
@@ -22,35 +40,35 @@
       "name": "GitHub",
       "url": "https://github.com/Carrera-Sebastian",
       "icon": "mdi:github",
-      "label": "View Profile",
+      "label": { "es": "Ver perfil", "en": "View Profile" },
       "showInContact": true
     },
     {
       "name": "LinkedIn",
-      "url": "linkedin.com/in/sebastian-carrera-zanetta",
+      "url": "https://www.linkedin.com/in/sebastian-carrera-zanetta",
       "icon": "mdi:linkedin",
-      "label": "Connect",
+      "label": { "es": "Conectar", "en": "Connect" },
       "showInContact": true
     },
     {
       "name": "Leetcode",
       "url": "#",
       "icon": "devicon-plain:leetcode",
-      "label": "View Profile",
+      "label": { "es": "Ver perfil", "en": "View Profile" },
       "showInContact": false
     },
     {
       "name": "Behance",
       "url": "#",
       "icon": "devicon-plain:behance",
-      "label": "View Profile",
+      "label": { "es": "Ver perfil", "en": "View Profile" },
       "showInContact": false
     },
     {
       "name": "Email",
       "url": "mailto:sebaluca.carrera@gmail.com",
       "icon": "mdi:email",
-      "label": "Send Email",
+      "label": { "es": "Enviar email", "en": "Send Email" },
       "showInContact": true
     }
   ]

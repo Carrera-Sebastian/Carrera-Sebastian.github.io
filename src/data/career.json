@@ -1,27 +1,60 @@
 [
   {
+    "_comment": "'type' is an internal key (drives the icon and badge colour) — keep it in English. 'typeLabel' is what gets displayed.",
     "company": "Ministerio de Seguridad de Córdoba",
-    "role": "Full-stack Developer",
-    "period": "March 2026 - Present",
+    "role": {
+      "es": "Desarrollador Full-stack",
+      "en": "Full-stack Developer"
+    },
+    "period": {
+      "es": "Marzo 2026 - Actualidad",
+      "en": "March 2026 - Present"
+    },
     "type": "Full time job",
-    "description": "Developed and maintained a critical infrastructure management system for police certificates",
+    "typeLabel": { "es": "Tiempo completo", "en": "Full time job" },
+    "description": {
+      "es": "Desarrollo y mantenimiento de un sistema crítico para la gestión de turnos y pagos del trámite de antecedentes personales de la provincia.",
+      "en": "Developed and maintained a critical system for managing appointments and payments for the province's criminal-record certificate procedure."
+    },
     "skills": ["Angular", "Node.js", "PLSQL", ".NET", "Claude"]
   },
   {
     "company": "Ministerio de Seguridad de Córdoba",
-    "url": "https://example.com",
-    "role": "Full-stack Developer",
-    "period": "Apr 2024 - Present",
+    "role": {
+      "es": "Desarrollador Full-stack",
+      "en": "Full-stack Developer"
+    },
+    "period": {
+      "es": "Abril 2024 - Actualidad",
+      "en": "Apr 2024 - Present"
+    },
     "type": "Full time job",
-    "description": "Development and maintenance of a critical infrastructure system for managing cameras and alarms installed in the city",
+    "typeLabel": { "es": "Tiempo completo", "en": "Full time job" },
+    "description": {
+      "es": "Desarrollo y mantenimiento de un sistema de infraestructura crítica para la gestión de cámaras y alarmas instaladas en la provincia.",
+      "en": "Development and maintenance of a critical infrastructure system for managing cameras and alarms installed across the province."
+    },
     "skills": ["Angular", "Node.js", "PLSQL", ".NET"]
   },
   {
     "company": "Universidad Tecnológica Nacional - Facultad Regional Córdoba",
-    "role": "Information Systems Engineering",
-    "period": "March 2019 - Dec 2025",
+    "role": {
+      "es": "Ingeniería en Sistemas de Información",
+      "en": "Information Systems Engineering"
+    },
+    "period": {
+      "es": "Marzo 2019 - Diciembre 2025",
+      "en": "March 2019 - Dec 2025"
+    },
     "type": "Student",
-    "description": "Focused on data structures, algorithm optimization, software architecture, and database systems.",
-    "skills": ["Data Structures", "Algorithms", "OOP", "DBMS"]
+    "typeLabel": { "es": "Formación", "en": "Student" },
+    "description": {
+      "es": "Formación centrada en estructuras de datos, optimización de algoritmos, arquitectura de software y bases de datos.",
+      "en": "Focused on data structures, algorithm optimization, software architecture, and database systems."
+    },
+    "skills": {
+      "es": ["Estructuras de datos", "Algoritmos", "POO", "Bases de datos"],
+      "en": ["Data Structures", "Algorithms", "OOP", "DBMS"]
+    }
   }
 ]

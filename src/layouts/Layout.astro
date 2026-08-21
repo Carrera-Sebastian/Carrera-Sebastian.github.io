@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import { SITE_CONFIG } from '../config.ts';
+import { localizedPath, type Lang } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -11,7 +12,9 @@ interface Props {
   twitterHandle?: string;
   personName?: string;
   jobTitle?: string;
-  lang?: string;
+  lang?: Lang;
+  /** Site-root path of this page WITHOUT the locale prefix, e.g. "/" or "/projects/cya/". */
+  path?: string;
   socials?: { name: string; url: string }[];
 }
 
@@ -24,7 +27,8 @@ const {
   twitterHandle = '',
   personName = '',
   jobTitle = '',
-  lang = 'en',
+  lang = 'es',
+  path = '/',
   socials = [],
 } = Astro.props;
 
@@ -32,11 +36,14 @@ const {
 const baseTheme = SITE_CONFIG.baseTheme;
 const defaultTheme = `${baseTheme}-dark`;
 
-// Canonical & OG absolute URLs
-const resolvedSiteUrl = siteUrl || Astro.site?.toString() || '';
-const canonicalUrl = resolvedSiteUrl 
-    ? resolvedSiteUrl.replace(/\/$/, '') + '/' 
-    : Astro.url.href;
+// Canonical, hreflang alternates & OG absolute URLs
+const rawSiteUrl = siteUrl || Astro.site?.toString() || '';
+const resolvedSiteUrl = rawSiteUrl.endsWith('/') ? rawSiteUrl.slice(0, -1) : rawSiteUrl;
+const alternates = {
+  es: resolvedSiteUrl ? resolvedSiteUrl + localizedPath(path, 'es') : '',
+  en: resolvedSiteUrl ? resolvedSiteUrl + localizedPath(path, 'en') : '',
+};
+const canonicalUrl = alternates[lang] || Astro.url.href;
 const ogImage = ogImageUrl
     ? new URL(ogImageUrl, resolvedSiteUrl || Astro.url.origin).href
     : '';
@@ -71,8 +78,7 @@ const jsonLd = {
   ]
 };
 
-// 'en' -> 'en_US'
-const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
+const ogLocale = lang === 'es' ? 'es_AR' : 'en_US';
 ---
 
 <!doctype html>
@@ -91,6 +97,11 @@ const ogLocale = lang.includes('_') ? lang : `${lang}_${lang.toUpperCase()}`;
     {personName && <meta name="author" content={personName} />}
     <meta name="robots" content="index, follow" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- LANGUAGE ALTERNATES -->
+    {alternates.es && <link rel="alternate" hreflang="es" href={alternates.es} />}
+    {alternates.en && <link rel="alternate" hreflang="en" href={alternates.en} />}
+    {alternates.es && <link rel="alternate" hreflang="x-default" href={alternates.es} />}
 
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="website" />

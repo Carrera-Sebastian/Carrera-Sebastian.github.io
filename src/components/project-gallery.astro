@@ -2,26 +2,33 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import type { GalleryImage } from '../utils/images';
+import type { L } from '../utils/projects';
+import { pick, useTranslations, type Lang } from '../i18n/ui';
 
 interface Props {
   images: GalleryImage[];
-  captions?: Record<string, string>;
+  captions?: Record<string, L<string>>;
   title: string;
+  lang: Lang;
 }
 
-const { images, captions = {}, title } = Astro.props;
+const { images, captions = {}, title, lang } = Astro.props;
+const t = useTranslations(lang);
 
-const items = images.map((image, index) => ({
-  src: image.src,
-  alt: captions[image.filename] ?? `${title} screenshot ${index + 1}`,
-  caption: captions[image.filename] ?? '',
-}));
+const items = images.map((image, index) => {
+  const caption = pick(captions[image.filename], lang) ?? '';
+  return {
+    src: image.src,
+    alt: caption || `${title} ${t('detail.screenshotAlt')} ${index + 1}`,
+    caption,
+  };
+});
 ---
 
 {items.length > 0 && (
-  <section class="mt-16" aria-label={`${title} screenshots`}>
+  <section class="mt-16" aria-label={`${title} — ${t('detail.screenshots')}`}>
     <h2 class="text-2xl md:text-3xl font-heading font-bold text-maintext mb-6 flex items-center gap-3">
-      <span class="text-accent">/</span> Screenshots
+      <span class="text-accent">/</span> {t('detail.screenshots')}
     </h2>
 
     <div id="project-gallery" class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -30,7 +37,7 @@ const items = images.map((image, index) => ({
           type="button"
           class="gallery-thumb group block aspect-video overflow-hidden rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/40 transition-all duration-300 cursor-pointer"
           data-index={index}
-          aria-label={`Open screenshot ${index + 1}: ${item.alt}`}
+          aria-label={item.alt}
         >
           <Image
             src={item.src}

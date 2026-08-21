@@ -1,116 +1,412 @@
 [
   {
-    "_comment": "slug = folder name under src/assets/projects/ AND the URL segment (/projects/<slug>/). Drop screenshots in that folder — see src/assets/projects/README.md. 'link' and 'repoUrl' are optional: leave them empty to hide the button.",
+    "_comment": "slug = folder name under src/assets/projects/ AND the URL segment. 'category' is an internal key (drives the badge colour); 'categoryLabel' is what gets displayed. Any text field can be a plain string or { es, en }.",
+    "slug": "cya",
+    "title": "Sistema de Cámaras y Alarmas",
+    "tagline": {
+      "es": "Del pedido de un municipio a la cámara certificada y funcionando.",
+      "en": "From a town's request to a certified, working camera."
+    },
+    "description": {
+      "es": "Sistema de gestión para el despliegue provincial de kits de cámaras y alarmas: desde la solicitud de un municipio hasta la certificación de cada emplazamiento instalado, más el mantenimiento posterior.",
+      "en": "Management system for the province-wide rollout of camera and alarm kits: from a town's request through to the certification of each installed site, plus the maintenance that follows."
+    },
+    "category": "Professional Project",
+    "categoryLabel": { "es": "Proyecto profesional", "en": "Professional Project" },
+    "period": { "es": "2024 – Actualidad", "en": "2024 – Present" },
+    "role": { "es": "Desarrollador Full-stack", "en": "Full-stack developer" },
+    "tech": ["Angular", "Node.js", ".NET", "PL/SQL"],
+    "platforms": ["web"],
+    "link": "",
+    "repoUrl": "",
+    "sections": [
+      {
+        "heading": { "es": "Qué resuelve", "en": "What it solves" },
+        "body": {
+          "es": [
+            "Los municipios de la provincia solicitan kits de cámaras o alarmas para instalar en sus localidades. Cada pedido arrastra detrás una cadena larga: definir los componentes, ubicar físicamente cada emplazamiento, coordinar proveedores, resolver la energía eléctrica y certificar que quedó funcionando.",
+            "El sistema unifica esa cadena en un único flujo trazable, con el estado de cada emplazamiento visible en todo momento y la documentación de cada paso adjunta donde corresponde."
+          ],
+          "en": [
+            "Towns across the province request camera or alarm kits to install in their localities. Every request drags a long chain behind it: defining the components, physically locating each site, coordinating suppliers, sorting out the electrical supply, and certifying that it ended up working.",
+            "The system unifies that chain into a single traceable flow, with the status of every site visible at all times and the paperwork for each step attached where it belongs."
+          ]
+        }
+      },
+      {
+        "heading": {
+          "es": "El flujo: de la solicitud a la certificación",
+          "en": "The flow: from request to certification"
+        },
+        "body": {
+          "es": [
+            "Una solicitud se registra siempre contra un proyecto, que es el que define qué contiene un kit. Al aprobarse, la solicitud se convierte en una asignación que agrupa los emplazamientos y sus componentes, y esa asignación recorre seis etapas hasta quedar FINALIZADA."
+          ],
+          "en": [
+            "A request is always registered against a project, which is what defines the contents of a kit. Once approved, the request becomes an assignment grouping the sites and their components, and that assignment walks through six stages before it is FINISHED."
+          ]
+        },
+        "list": {
+          "es": [
+            "Prerelevamiento — se cargan los datos iniciales y se dan de alta los emplazamientos previstos.",
+            "Relevamiento — se confirma cada emplazamiento en terreno; acá también se pueden reutilizar emplazamientos ya existentes de otros proyectos.",
+            "Preinstalación — preparación previa al montaje.",
+            "Energización — proveedor de energía, número de suministro y estado del punto de alimentación.",
+            "Instalación — se asocian los activos concretos que se montaron en cada emplazamiento.",
+            "Certificación — validación final que deja el emplazamiento certificado y en funcionamiento."
+          ],
+          "en": [
+            "Pre-survey — initial data is loaded and the planned sites are registered.",
+            "Survey — each site is confirmed in the field; existing sites from other projects can also be reused here.",
+            "Pre-installation — groundwork before the physical mounting.",
+            "Energization — power supplier, supply number and the state of the feed point.",
+            "Installation — the actual assets mounted at each site are linked to it.",
+            "Certification — the final validation that leaves the site certified and operational."
+          ]
+        }
+      },
+      {
+        "heading": { "es": "Módulos", "en": "Modules" },
+        "list": {
+          "es": [
+            "Seguridad — gestión de personas, usuarios, perfiles y procesos, con permisos por rol que definen quién puede ver y quién puede accionar en cada etapa.",
+            "Proyectos — un proyecto define el kit y los componentes que lo integran, cuántos kits hay disponibles para entregar y qué proveedor lo abastece. Cada proyecto puede tener un proveedor distinto.",
+            "Mantenimiento — a partir del reclamo de un emplazamiento se generan órdenes de trabajo, una por componente con falla, que derivan en arreglos o reemplazos e incluyen una instancia de autorización de stock.",
+            "Reportes — mapa de emplazamientos, tablero de control, tablero informativo y reportes dinámicos exportables a Excel."
+          ],
+          "en": [
+            "Security — management of people, users, profiles and processes, with role-based permissions defining who can see and who can act at each stage.",
+            "Projects — a project defines the kit and the components in it, how many kits are available to hand out, and which supplier provides them. Each project can have a different supplier.",
+            "Maintenance — a claim raised against a site generates work orders, one per faulty component, leading to repairs or replacements and including a stock-authorization step.",
+            "Reports — site map, control dashboard, informational dashboard, and dynamic reports exportable to Excel."
+          ]
+        }
+      },
+      {
+        "heading": { "es": "Trazabilidad", "en": "Traceability" },
+        "body": {
+          "es": [
+            "Cada avance de etapa queda registrado con su fecha, el usuario que lo hizo y la documentación que lo respalda. Eso permite auditar hacia atrás por qué un emplazamiento está donde está, y es lo que hace que el sistema sirva tanto para operar como para rendir cuentas."
+          ],
+          "en": [
+            "Every stage transition is recorded with its date, the user who made it and the supporting documentation. That makes it possible to audit backwards why a site is where it is — and it is what makes the system useful both for running the operation and for accounting for it."
+          ]
+        }
+      }
+    ],
+    "captions": {}
+  },
+  {
+    "slug": "antecedentes",
+    "title": "Sistema de Antecedentes Personales",
+    "tagline": {
+      "es": "Turno y pago del trámite, finalmente en un mismo flujo.",
+      "en": "Appointment and payment, finally in the same flow."
+    },
+    "description": {
+      "es": "Sistema que vincula el turno del trámite de antecedentes personales con su pago: integra el turnero provincial, genera la tasa con QR y link de pago, y cancela automáticamente los turnos que no se abonan.",
+      "en": "A system that ties the appointment for the criminal-record certificate to its payment: it embeds the province's booking service, generates the fee with a QR and payment link, and automatically cancels unpaid appointments."
+    },
+    "category": "Professional Project",
+    "categoryLabel": { "es": "Proyecto profesional", "en": "Professional Project" },
+    "period": { "es": "2026 – Actualidad", "en": "2026 – Present" },
+    "role": { "es": "Desarrollador Full-stack", "en": "Full-stack developer" },
+    "tech": ["Angular", "Node.js", ".NET", "PL/SQL"],
+    "platforms": ["web"],
+    "link": "",
+    "repoUrl": "",
+    "sections": [
+      {
+        "heading": { "es": "Qué resuelve", "en": "What it solves" },
+        "body": {
+          "es": [
+            "Sacar turno para el trámite de antecedentes personales y pagar la tasa correspondiente eran dos cosas separadas, sin ninguna relación entre sí. El resultado previsible: turnos ocupados por gente que nunca pagó, y gente que pagaba sin tener turno.",
+            "El sistema nace justamente de esa necesidad — vincular el turno con el pago — y convierte dos trámites sueltos en un solo recorrido."
+          ],
+          "en": [
+            "Booking an appointment for the criminal-record certificate and paying the corresponding fee were two separate things, with no connection between them. The predictable result: slots taken by people who never paid, and people paying without a slot.",
+            "The system exists precisely to close that gap — linking the appointment to the payment — turning two loose procedures into a single journey."
+          ]
+        }
+      },
+      {
+        "heading": { "es": "Cómo funciona", "en": "How it works" },
+        "list": {
+          "es": [
+            "El ciudadano saca turno en el centro de atención que le queda cómodo, con el turnero provincial embebido dentro del sistema.",
+            "Sobre ese turno se genera la tasa correspondiente al trámite.",
+            "Se emite un QR y un link de pago que admite distintos medios.",
+            "El trámite solo puede realizarse con la tasa ya abonada.",
+            "Si el turno no se paga dentro del plazo, se cancela de forma automática y esa cancelación se comunica de vuelta al turnero provincial, liberando el lugar."
+          ],
+          "en": [
+            "The citizen books a slot at whichever service centre suits them, using the province's booking service embedded inside the system.",
+            "The fee for the procedure is generated against that appointment.",
+            "A QR code and a payment link are issued, accepting several payment methods.",
+            "The procedure can only go ahead once the fee has been paid.",
+            "If the appointment goes unpaid past the deadline it is cancelled automatically, and that cancellation is pushed back to the province's booking service, freeing the slot."
+          ]
+        }
+      },
+      {
+        "heading": { "es": "El desafío", "en": "The hard part" },
+        "body": {
+          "es": [
+            "Lo más delicado fue integrarse con un turnero provincial preexistente que no era nuestro. Hubo que definir una comunicación en ambos sentidos —tomar la disponibilidad de turnos y devolver las cancelaciones— cuidando que una falla de cualquiera de los dos lados no dejara turnos inconsistentes en el otro."
+          ],
+          "en": [
+            "The delicate part was integrating with a pre-existing provincial booking service that was not ours. It meant defining two-way communication — pulling slot availability and pushing cancellations back — while making sure a failure on either side could not leave the other holding inconsistent appointments."
+          ]
+        }
+      }
+    ],
+    "captions": {}
+  },
+  {
     "slug": "plantitapp",
     "title": "PlantitApp",
-    "tagline": "Identify, organize and keep your plants alive — with a community behind you.",
-    "description": "University thesis project: a plant care platform that identifies species with AI, tracks each plant's health history, sends care reminders and connects users with a community and local nurseries.",
+    "tagline": {
+      "es": "Identificá, organizá y mantené vivas tus plantas — con una comunidad detrás.",
+      "en": "Identify, organize and keep your plants alive — with a community behind you."
+    },
+    "description": {
+      "es": "Proyecto final de carrera: una plataforma de cuidado de plantas que identifica especies con IA, lleva el historial de salud de cada planta, envía recordatorios de cuidado y conecta a los usuarios con una comunidad y con viveros cercanos.",
+      "en": "University thesis project: a plant care platform that identifies species with AI, tracks each plant's health history, sends care reminders and connects users with a community and local nurseries."
+    },
     "category": "Academic / Thesis Project",
-    "period": "2025",
-    "role": "Full-stack developer · Scrum team member",
+    "categoryLabel": { "es": "Proyecto final de carrera", "en": "Academic / Thesis Project" },
+    "period": "2024 – 2025",
+    "role": {
+      "es": "Desarrollador Full-stack · Integrante del equipo Scrum",
+      "en": "Full-stack developer · Scrum team member"
+    },
     "tech": ["Angular", "Ionic", "Express", "Supabase", "TypeScript"],
     "platforms": ["web", "android"],
     "link": "",
     "repoUrl": "",
     "sections": [
       {
-        "heading": "Overview",
-        "body": [
-          "A lot of people want plants at home — for the wellbeing, for the space, for the connection with nature. What stops them is not the buying, it is the keeping: every species needs something different, and urban life leaves little time to figure out what. The usual outcome is a dead plant and a frustrated owner.",
-          "PlantitApp was built as the educational and organizational tool that closes that gap. It identifies a species from a photo, explains what that particular plant needs, keeps a health record for it, and reminds its owner when to act — regardless of how much the owner knows about botany.",
-          "It was developed as my Information Systems Engineering thesis project at UTN Facultad Regional Córdoba, as a team, from problem definition through to a working product."
-        ]
+        "heading": { "es": "Panorama", "en": "Overview" },
+        "body": {
+          "es": [
+            "Mucha gente quiere plantas en casa — por el bienestar, por el espacio, por la conexión con la naturaleza. Lo que las frena no es comprarlas, es mantenerlas: cada especie necesita algo distinto, y el ritmo urbano deja poco tiempo para averiguar qué. El desenlace habitual es una planta muerta y un dueño frustrado.",
+            "PlantitApp se construyó como la herramienta educativa y organizativa que cierra esa brecha. Identifica una especie a partir de una foto, explica qué necesita esa planta en particular, le lleva un registro de salud y le avisa al dueño cuándo actuar — sin importar cuánto sepa de botánica.",
+            "Se desarrolló como proyecto final de la carrera de Ingeniería en Sistemas de Información en la UTN Facultad Regional Córdoba, en equipo, desde la definición del problema hasta un producto funcionando."
+          ],
+          "en": [
+            "A lot of people want plants at home — for the wellbeing, for the space, for the connection with nature. What stops them is not the buying, it is the keeping: every species needs something different, and urban life leaves little time to figure out what. The usual outcome is a dead plant and a frustrated owner.",
+            "PlantitApp was built as the educational and organizational tool that closes that gap. It identifies a species from a photo, explains what that particular plant needs, keeps a health record for it, and reminds its owner when to act — regardless of how much the owner knows about botany.",
+            "It was developed as my Information Systems Engineering thesis project at UTN Facultad Regional Córdoba, as a team, from problem definition through to a working product."
+          ]
+        }
       },
       {
-        "heading": "My role & how we worked",
-        "body": [
-          "I worked as a full-stack developer on the team and, like everyone else, took my turn as Scrum Master — the role rotated deliberately so all of us gained project-management experience rather than just one person.",
-          "We ran Scrum with 15-day sprints. A Sprint Zero set the ground rules first: roles, ceremonies, artifacts, and shared conventions for documentation, estimation and code. Each sprint opened with a planning session where we pulled items from the Product Backlog and estimated them with Planning Poker, and closed with a review of the increment plus a retrospective. It was the first time this team had worked together, and the framework is what kept that from showing."
-        ]
+        "heading": { "es": "Mi rol y cómo trabajamos", "en": "My role & how we worked" },
+        "body": {
+          "es": [
+            "Trabajé como desarrollador full-stack dentro del equipo y, como todos, me tocó mi turno de Scrum Master: el rol rotaba a propósito para que todos ganáramos experiencia de gestión, y no solo una persona.",
+            "Usamos Scrum con sprints de 15 días. Un Sprint Cero fijó primero las reglas del juego: roles, ceremonias, artefactos y convenciones compartidas de documentación, estimación y código. Cada sprint abría con una planificación donde tomábamos ítems del Product Backlog y los estimábamos con Planning Poker, y cerraba con una review del incremento más una retrospectiva. Era la primera vez que este equipo trabajaba junto, y el marco es lo que hizo que no se notara."
+          ],
+          "en": [
+            "I worked as a full-stack developer on the team and, like everyone else, took my turn as Scrum Master — the role rotated deliberately so all of us gained project-management experience rather than just one person.",
+            "We ran Scrum with 15-day sprints. A Sprint Zero set the ground rules first: roles, ceremonies, artifacts, and shared conventions for documentation, estimation and code. Each sprint opened with a planning session where we pulled items from the Product Backlog and estimated them with Planning Poker, and closed with a review of the increment plus a retrospective. It was the first time this team had worked together, and the framework is what kept that from showing."
+          ]
+        }
       },
       {
-        "heading": "Key features",
-        "list": [
-          "AI species recognition — point the phone camera at a plant, identify it, and add it straight to a personal collection.",
-          "Per-plant health history — a log of waterings, pruning, fertilizing and illnesses, plus a preliminary diagnosis that suggests likely diseases from visible symptoms.",
-          "Personalized care recommendations — watering, light and general care derived from the species, location and environmental conditions rather than generic advice.",
-          "Care reminders — notifications for watering, fertilizing and check-ups, either across the whole collection or tuned per species.",
-          "Communities — themed spaces to share experiences, trade cuttings and ask questions, with moderation tools to keep them safe and collaborative.",
-          "Nurseries and service providers — an interactive map to find them nearby, browse their profiles and catalogues, contact them directly and rate them afterwards."
-        ]
+        "heading": { "es": "Funcionalidades principales", "en": "Key features" },
+        "list": {
+          "es": [
+            "Reconocimiento de especies con IA — apuntás la cámara del celular a una planta, la identificás y la agregás directo a tu colección.",
+            "Historial de salud por planta — un registro de riegos, podas, fertilizaciones y enfermedades, más un diagnóstico preliminar que sugiere posibles enfermedades a partir de los síntomas visibles.",
+            "Recomendaciones de cuidado personalizadas — riego, luz y cuidados generales derivados de la especie, la ubicación y las condiciones ambientales, en lugar de consejos genéricos.",
+            "Recordatorios de cuidado — notificaciones para regar, fertilizar y revisar, ya sea para toda la colección o afinados por especie.",
+            "Comunidades — espacios temáticos para compartir experiencias, intercambiar esquejes y hacer preguntas, con herramientas de moderación que los mantienen seguros y colaborativos.",
+            "Viveros y prestadores de servicios — un mapa interactivo para encontrarlos cerca, ver sus perfiles y catálogos, contactarlos directamente y calificarlos después."
+          ],
+          "en": [
+            "AI species recognition — point the phone camera at a plant, identify it, and add it straight to a personal collection.",
+            "Per-plant health history — a log of waterings, pruning, fertilizing and illnesses, plus a preliminary diagnosis that suggests likely diseases from visible symptoms.",
+            "Personalized care recommendations — watering, light and general care derived from the species, location and environmental conditions rather than generic advice.",
+            "Care reminders — notifications for watering, fertilizing and check-ups, either across the whole collection or tuned per species.",
+            "Communities — themed spaces to share experiences, trade cuttings and ask questions, with moderation tools to keep them safe and collaborative.",
+            "Nurseries and service providers — an interactive map to find them nearby, browse their profiles and catalogues, contact them directly and rate them afterwards."
+          ]
+        }
       },
       {
-        "heading": "Results & what I took from it",
-        "body": [
-          "What separates PlantitApp from the identify-only apps is that identification is the entry point, not the product. Around it sits the part that actually keeps plants alive: an organized collection, a health record over time, care adapted to the specific plant, other people to ask, and the local shops and services to reach for.",
-          "The honest limitation is recognition accuracy. It holds up well on clear photos, and degrades with poor lighting, bad framing, or species that genuinely look alike — which is exactly why the symptom-based diagnosis is presented as a preliminary suggestion and not a verdict.",
-          "Beyond the code, this was my first project run end to end under a real agile process: rotating the Scrum Master role, estimating as a group, and shipping an increment every two weeks taught me as much as the stack did."
-        ]
+        "heading": { "es": "Resultados y aprendizajes", "en": "Results & what I took from it" },
+        "body": {
+          "es": [
+            "Lo que separa a PlantitApp de las apps que solo identifican es que la identificación es la puerta de entrada, no el producto. Alrededor de eso está la parte que realmente mantiene viva a una planta: una colección organizada, un registro de salud en el tiempo, cuidados adaptados a esa planta puntual, gente a quien preguntarle, y los comercios y servicios locales a mano.",
+            "La limitación honesta es la precisión del reconocimiento. Se sostiene bien con fotos claras y se degrada con mala iluminación, mal encuadre o especies que genuinamente se parecen — que es exactamente por lo que el diagnóstico por síntomas se presenta como una sugerencia preliminar y no como un veredicto.",
+            "Más allá del código, fue mi primer proyecto llevado de punta a punta bajo un proceso ágil real: rotar el rol de Scrum Master, estimar en grupo y entregar un incremento cada dos semanas me enseñó tanto como el stack."
+          ],
+          "en": [
+            "What separates PlantitApp from the identify-only apps is that identification is the entry point, not the product. Around it sits the part that actually keeps plants alive: an organized collection, a health record over time, care adapted to the specific plant, other people to ask, and the local shops and services to reach for.",
+            "The honest limitation is recognition accuracy. It holds up well on clear photos, and degrades with poor lighting, bad framing, or species that genuinely look alike — which is exactly why the symptom-based diagnosis is presented as a preliminary suggestion and not a verdict.",
+            "Beyond the code, this was my first project run end to end under a real agile process: rotating the Scrum Master role, estimating as a group, and shipping an increment every two weeks taught me as much as the stack did."
+          ]
+        }
       }
     ],
-    "captions": {}
+    "captions": {
+      "02-colecciones.png": {
+        "es": "Colecciones de plantas del usuario",
+        "en": "The user's plant collections"
+      },
+      "03-planta.png": { "es": "Ficha de una planta", "en": "Individual plant page" },
+      "04-planta-diagnóstico.png": {
+        "es": "Diagnóstico preliminar a partir de los síntomas",
+        "en": "Symptom-based preliminary diagnosis"
+      },
+      "05-negocio1.png": { "es": "Perfil de un vivero", "en": "Nursery profile" },
+      "06-negocio2.png": { "es": "Catálogo del vivero", "en": "Nursery catalogue" },
+      "07-mapa.png": {
+        "es": "Mapa de viveros y prestadores cercanos",
+        "en": "Map of nearby nurseries and service providers"
+      },
+      "08-intercambio1.png": {
+        "es": "Intercambio de esquejes en la comunidad",
+        "en": "Community cutting exchange"
+      }
+    }
   },
   {
     "slug": "my-mind",
     "title": "My Mind",
-    "tagline": "A therapy management platform where the clinical content is data, not code.",
-    "description": "A two-role therapy management platform: the therapist designs clinical activities, assigns and schedules them, and runs sessions; the patient fills in their records and follows their progress. Activity types are defined as data, so adding one needs no new code.",
+    "tagline": {
+      "es": "Una plataforma de gestión terapéutica donde el contenido clínico es dato, no código.",
+      "en": "A therapy management platform where the clinical content is data, not code."
+    },
+    "description": {
+      "es": "Plataforma de gestión terapéutica con dos roles: el terapeuta diseña actividades clínicas, las asigna, las agenda y coordina las sesiones; el paciente completa sus registros y sigue su progreso. Los tipos de actividad se definen como datos, así que sumar uno nuevo no requiere código.",
+      "en": "A two-role therapy management platform: the therapist designs clinical activities, assigns and schedules them, and runs sessions; the patient fills in their records and follows their progress. Activity types are defined as data, so adding one needs no new code."
+    },
     "category": "Personal Project",
-    "period": "July 2026 – Present",
-    "role": "Solo developer — design, backend and frontend",
-    "tech": ["TypeScript", "Node.js", "PostgreSQL", "JWT", "FullCalendar", "SVG"],
+    "categoryLabel": { "es": "Proyecto personal", "en": "Personal Project" },
+    "period": { "es": "2026 – Actualidad", "en": "2026 – Present" },
+    "role": {
+      "es": "Desarrollador único — diseño, backend y frontend",
+      "en": "Solo developer — design, backend and frontend"
+    },
+    "tech": ["TypeScript", "Node.js", "PostgreSQL", "Claude"],
     "platforms": ["web"],
     "link": "",
     "repoUrl": "",
     "sections": [
       {
-        "heading": "Overview",
-        "body": [
-          "My Mind is a therapy management platform built around two roles: the therapist and the person in therapy. The therapist admits patients by invitation, designs clinical activities, assigns and schedules them, coordinates sessions and publishes updates. The patient completes their records, sees their calendar and reads those updates.",
-          "It is in active development — the modules described below are built and working, and the work continues."
-        ]
+        "heading": { "es": "Panorama", "en": "Overview" },
+        "body": {
+          "es": [
+            "My Mind es una plataforma de gestión terapéutica construida alrededor de dos roles: el terapeuta y la persona en terapia. El terapeuta da de alta pacientes por invitación, diseña actividades clínicas, las asigna y agenda, coordina las sesiones y publica novedades. El paciente completa sus registros, ve su calendario y lee esas novedades.",
+            "Está en desarrollo activo: los módulos que siguen están construidos y funcionando, y el trabajo continúa."
+          ],
+          "en": [
+            "My Mind is a therapy management platform built around two roles: the therapist and the person in therapy. The therapist admits patients by invitation, designs clinical activities, assigns and schedules them, coordinates sessions and publishes updates. The patient completes their records, sees their calendar and reads those updates.",
+            "It is in active development — the modules described below are built and working, and the work continues."
+          ]
+        }
       },
       {
-        "heading": "Activities defined as data, not as code",
-        "body": [
-          "This is the design decision the whole project rests on. An activity template does not have a component of its own: it declares its fields in a JSONB schema, the frontend renders any template generically from that schema, and the backend validates submissions against the very same schema. Adding a new kind of clinical activity is a data change — no new components, no second copy of the validation rules to keep in sync."
-        ],
-        "list": [
-          "Field types: text, long text, number, select, star rating and slider scale.",
-          "Template types: tables the patient adds rows to, and radar self-assessments rendered as an SVG hexagon.",
-          "Progress charts for any numeric column with at least two records.",
-          "Charts are hand-written SVG components — no charting library, no heavy dependency.",
-          "Every record carries its own date: the form opens on today but can be backdated, and listings and charts follow that date rather than when it happened to be typed in."
-        ]
+        "heading": {
+          "es": "Actividades definidas como datos, no como código",
+          "en": "Activities defined as data, not as code"
+        },
+        "body": {
+          "es": [
+            "Esta es la decisión de diseño sobre la que se apoya todo el proyecto. Una plantilla de actividad no tiene un componente propio: declara sus campos en un esquema JSONB, el frontend renderiza cualquier plantilla genéricamente a partir de ese esquema, y el backend valida los envíos contra ese mismo esquema. Sumar un nuevo tipo de actividad clínica es un cambio de datos: sin componentes nuevos, sin una segunda copia de las reglas de validación que haya que mantener sincronizada."
+          ],
+          "en": [
+            "This is the design decision the whole project rests on. An activity template does not have a component of its own: it declares its fields in a JSONB schema, the frontend renders any template generically from that schema, and the backend validates submissions against the very same schema. Adding a new kind of clinical activity is a data change — no new components, no second copy of the validation rules to keep in sync."
+          ]
+        },
+        "list": {
+          "es": [
+            "Tipos de campo: texto, texto largo, número, selección, puntuación con estrellas y escala deslizante.",
+            "Tipos de plantilla: tablas a las que el paciente agrega filas, y autoevaluaciones radar renderizadas como un hexágono SVG.",
+            "Gráficos de progreso para cualquier columna numérica con al menos dos registros.",
+            "Los gráficos son componentes SVG escritos a mano: sin librería de charts, sin dependencias pesadas.",
+            "Cada registro lleva su propia fecha: el formulario abre en hoy pero se puede retrodatar, y los listados y gráficos siguen esa fecha y no la de carga."
+          ],
+          "en": [
+            "Field types: text, long text, number, select, star rating and slider scale.",
+            "Template types: tables the patient adds rows to, and radar self-assessments rendered as an SVG hexagon.",
+            "Progress charts for any numeric column with at least two records.",
+            "Charts are hand-written SVG components — no charting library, no heavy dependency.",
+            "Every record carries its own date: the form opens on today but can be backdated, and listings and charts follow that date rather than when it happened to be typed in."
+          ]
+        }
       },
       {
-        "heading": "Calendar & sessions",
-        "body": [
-          "The calendar is built on FullCalendar with events typed by kind — personal, activity or session — and a single explicit table governing who can see and who can edit each kind. Getting that visibility matrix right was most of the work in this module."
-        ],
-        "list": [
-          "Weekly or biweekly recurring sessions, materialized six months ahead and grouped by a series id, so a change can apply to one date or to the whole series.",
-          "Therapist availability per weekday, painted as a calendar background: it warns when a session falls outside it, without blocking the therapist from doing it anyway.",
-          "Activities scheduled from the patient's own file, with start, end, repetition and cancellation by date or by series.",
-          "Per-person Google Calendar sync: anyone who can see an event can push it to their own calendar, even without permission to edit it."
-        ]
+        "heading": { "es": "Calendario y sesiones", "en": "Calendar & sessions" },
+        "body": {
+          "es": [
+            "El calendario está construido sobre FullCalendar, con eventos tipados por clase —personal, actividad o sesión— y una única tabla explícita que gobierna quién puede ver y quién puede editar cada clase. Acertarle a esa matriz de visibilidad fue la mayor parte del trabajo del módulo."
+          ],
+          "en": [
+            "The calendar is built on FullCalendar with events typed by kind — personal, activity or session — and a single explicit table governing who can see and who can edit each kind. Getting that visibility matrix right was most of the work in this module."
+          ]
+        },
+        "list": {
+          "es": [
+            "Sesiones repetidas semanales o quincenales, materializadas a seis meses y agrupadas por un id de serie, de modo que un cambio puede aplicarse a una fecha o a toda la serie.",
+            "Disponibilidad del terapeuta por día de la semana, pintada de fondo en el calendario: avisa cuando una sesión queda afuera, sin bloquearlo.",
+            "Actividades agendadas desde la ficha del propio paciente, con inicio, fin, repetición y baja por fecha o por serie.",
+            "Sync con Google Calendar por persona: cualquiera que vea un evento puede empujarlo a su propio calendario, aunque no tenga permiso para editarlo."
+          ],
+          "en": [
+            "Weekly or biweekly recurring sessions, materialized six months ahead and grouped by a series id, so a change can apply to one date or to the whole series.",
+            "Therapist availability per weekday, painted as a calendar background: it warns when a session falls outside it, without blocking the therapist from doing it anyway.",
+            "Activities scheduled from the patient's own file, with start, end, repetition and cancellation by date or by series.",
+            "Per-person Google Calendar sync: anyone who can see an event can push it to their own calendar, even without permission to edit it."
+          ]
+        }
       },
       {
-        "heading": "Accounts & access",
-        "list": [
-          "Authentication with bcrypt password hashing and JWT in an httpOnly cookie, with ADMIN and PATIENT roles.",
-          "Self-registration gated by single-use invitation codes that expire after seven days, plus email confirmation.",
-          "Google Sign-In behind a feature flag — new accounts still require an invitation code.",
-          "Editable profiles, and an admin path to create users directly with a role selector."
-        ]
+        "heading": { "es": "Cuentas y acceso", "en": "Accounts & access" },
+        "list": {
+          "es": [
+            "Autenticación con hash bcrypt y JWT en cookie httpOnly, con roles ADMIN y PATIENT.",
+            "Autorregistro con códigos de invitación de un solo uso que vencen a los siete días, más confirmación por email.",
+            "Login con Google detrás de un feature flag: las cuentas nuevas siguen exigiendo código de invitación.",
+            "Perfiles editables, y un camino para que el admin cree usuarios directamente con selector de rol."
+          ],
+          "en": [
+            "Authentication with bcrypt password hashing and JWT in an httpOnly cookie, with ADMIN and PATIENT roles.",
+            "Self-registration gated by single-use invitation codes that expire after seven days, plus email confirmation.",
+            "Google Sign-In behind a feature flag — new accounts still require an invitation code.",
+            "Editable profiles, and an admin path to create users directly with a role selector."
+          ]
+        }
       },
       {
-        "heading": "Updates feed",
-        "body": [
-          "The therapist publishes posts with a title, body and image. A separate tab pulls curated external content over RSS, showing only the title, a preview and a link to the original — refreshing sources that have gone stale rather than on every page view."
-        ]
+        "heading": { "es": "Novedades", "en": "Updates feed" },
+        "body": {
+          "es": [
+            "El terapeuta publica novedades con título, cuerpo e imagen. Una pestaña aparte trae contenido externo curado por RSS, mostrando solo el título, un adelanto y el link al original, y refrescando las fuentes que quedaron viejas en lugar de hacerlo en cada visita."
+          ],
+          "en": [
+            "The therapist publishes posts with a title, body and image. A separate tab pulls curated external content over RSS, showing only the title, a preview and a link to the original — refreshing sources that have gone stale rather than on every page view."
+          ]
+        }
       }
     ],
-    "captions": {}
+    "captions": {
+      "02-home.png": { "es": "Inicio del paciente", "en": "Patient home screen" },
+      "03-activities.png": {
+        "es": "Plantillas de actividades que arma el terapeuta",
+        "en": "Activity templates built by the therapist"
+      },
+      "04-login.png": { "es": "Acceso al sistema", "en": "Sign-in screen" },
+      "05-calendar.png": {
+        "es": "Calendario con sesiones y actividades agendadas",
+        "en": "Calendar with scheduled sessions and activities"
+      },
+      "06-myactivities.png": {
+        "es": "Actividades asignadas al paciente",
+        "en": "Activities assigned to the patient"
+      }
+    }
   }
 ]

@@ -1,19 +1,26 @@
-import projectsEn from "../data/projects.json";
+import projectsData from "../data/projects.json";
+import type { Lang } from "../i18n/ui";
+
+/** A value that is either the same in every language, or given per locale. */
+export type L<T> = T | Record<Lang, T>;
 
 export interface ProjectSection {
-  heading: string;
-  body?: string[];
-  list?: string[];
+  heading: L<string>;
+  body?: L<string[]>;
+  list?: L<string[]>;
 }
 
 export interface Project {
   slug: string;
+  /** Product names are not translated. */
   title: string;
-  tagline?: string;
-  description: string;
+  tagline?: L<string>;
+  description: L<string>;
+  /** Internal key — drives the badge colour. Never displayed. */
   category: string;
-  period?: string;
-  role?: string;
+  categoryLabel: L<string>;
+  period?: L<string>;
+  role?: L<string>;
   tech: string[];
   platforms: string[];
   link?: string;
@@ -22,16 +29,12 @@ export interface Project {
   cover?: string;
   sections?: ProjectSection[];
   /** Screenshot filename -> caption, used as the alt text and shown in the lightbox. */
-  captions?: Record<string, string>;
+  captions?: Record<string, L<string>>;
 }
 
-/**
- * Single entry point for project data. Adding a second language later means adding
- * src/data/projects.<lang>.json and a lang argument here — no component changes.
- */
-
+/** Single entry point for project data, in the order they appear on the page. */
 export function getProjects(): Project[] {
-  return projectsEn as Project[];
+  return projectsData as unknown as Project[];
 }
 
 export function getProject(slug: string): Project | undefined {

@@ -1,56 +1,62 @@
-# Project screenshots
+# Capturas de proyectos / Project screenshots
 
-Drop your project captures here. They are picked up automatically at build time — no code or JSON
-changes needed.
+Dejá acá tus capturas. Se toman automáticamente en el build — no hace falta tocar código.
 
-## How it works
+## Cómo funciona
 
-1. **One folder per project**, named exactly like the project's `slug` in
+1. **Una carpeta por proyecto**, con el mismo nombre que el `slug` del proyecto en
    [`src/data/projects.json`](../../data/projects.json).
 
    ```
    src/assets/projects/
-   ├── plantitapp/
-   └── my-mind/
+   ├── cya/
+   ├── antecedentes/
+   ├── my-mind/
+   └── plantitapp/
    ```
 
-2. **Drop the image files in.** Accepted: `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`.
-   No need to resize or compress anything first — every image goes through Astro's `<Image>`
-   pipeline (Sharp), which generates optimized, correctly sized versions at build time.
+2. **Copiá los archivos adentro.** Se aceptan `.png`, `.jpg`, `.jpeg`, `.webp`, `.gif`.
+   No hace falta redimensionar ni comprimir nada: todas pasan por el pipeline `<Image>` de
+   Astro (Sharp), que genera versiones optimizadas en el tamaño correcto durante el build.
 
-3. **The filename sets the order.** Files are sorted naturally by name, so prefix them with a
-   number:
+3. **El nombre del archivo define el orden.** Se ordenan naturalmente por nombre, así que
+   conviene numerarlas:
 
    ```
    plantitapp/
-   ├── 01-home.png
-   ├── 02-plant-scan.png
-   ├── 03-health-history.png
-   └── 04-community.png
+   ├── 01-plantitapp.png
+   ├── 02-colecciones.png
+   ├── 03-planta.png
+   └── 04-planta-diagnóstico.png
    ```
 
-4. **The first image is also the card cover** on the home page. To use a different one, set
-   `"cover"` in `projects.json` to that filename (for example `"cover": "03-health-history.png"`).
+4. **La primera imagen es también la portada de la tarjeta** en la home. Para usar otra,
+   poné `"cover"` en `projects.json` con ese nombre de archivo
+   (por ejemplo `"cover": "03-planta.png"`).
 
-5. **Captions are optional.** By default the alt text is `"<Project title> screenshot N"`. To give
-   an image a real caption (shown in the lightbox and used as its alt text), add its filename under
-   `captions` in `projects.json`:
+5. **Las leyendas son opcionales y bilingües.** Por defecto el texto alternativo es
+   `"<Proyecto> captura N"` / `"<Project> screenshot N"`. Para darle una leyenda real
+   (se muestra en el lightbox y se usa como `alt`), agregá el nombre del archivo dentro de
+   `captions` en `projects.json`:
 
    ```json
    "captions": {
-     "02-plant-scan.png": "AI species recognition from the phone camera",
-     "04-community.png": "Themed communities where users trade cuttings"
+     "02-colecciones.png": {
+       "es": "Colecciones de plantas del usuario",
+       "en": "The user's plant collections"
+     }
    }
    ```
 
-   Only the files you want captioned need an entry.
+   Solo necesitan entrada los archivos que quieras describir. Si una leyenda es igual en los
+   dos idiomas, alcanza con poner el string suelto: `"07-mapa.png": "Google Maps"`.
 
-## Notes
+## Notas
 
-- A project with an empty folder simply shows no gallery, and its card falls back to
-  `public/placeholder.jpeg`. Nothing breaks.
-- The `.gitkeep` files exist only so git tracks the empty folders. Once a folder has real
-  screenshots in it, its `.gitkeep` can be deleted.
-- Add captures for a **new** project by creating a folder with that project's `slug`.
-- Screenshots become part of the public site — make sure they contain no real personal data
-  (patient names, emails, tokens). Use demo/seed data.
+- Un proyecto con la carpeta vacía simplemente no muestra galería, y su tarjeta cae al
+  `public/placeholder.jpeg`. No se rompe nada.
+- Los archivos `.gitkeep` existen solo para que git registre las carpetas vacías. Una vez que
+  la carpeta tiene capturas reales, se puede borrar su `.gitkeep`.
+- Para sumar capturas de un proyecto **nuevo**, creá una carpeta con el `slug` de ese proyecto.
+- Las capturas quedan públicas en el sitio: asegurate de que no tengan datos personales reales
+  (nombres de pacientes, emails, tokens, datos de ciudadanos). Usá datos de demo.

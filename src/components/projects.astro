@@ -1,7 +1,14 @@
 ---
 import ProjectCard from './project-card.astro';
 import { getProjects } from '../utils/projects';
+import { useTranslations, type Lang } from '../i18n/ui';
 
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 const projectsData = getProjects();
 ---
 
@@ -9,16 +16,16 @@ const projectsData = getProjects();
   <div class="container mx-auto">
     <div class="mb-16 project-header">
       <h2 class="text-3xl md:text-4xl font-heading font-bold text-maintext mb-2 flex items-center gap-4">
-          <span class="text-accent">/</span> Featured Projects
+          <span class="text-accent">/</span> {t('projects.title')}
         </h2>
       <p class="text-subtext font-body text-sm max-w-md">
-        Projects I built end to end. Open a case study for the full write-up and screenshots.
+        {t('projects.subtitle')}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projectsData.map((project) => (
-        <ProjectCard project={project} />
+        <ProjectCard project={project} lang={lang} />
       ))}
     </div>
   </div>

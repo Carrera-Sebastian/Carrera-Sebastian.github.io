@@ -1,0 +1,42 @@
+---
+import Layout from './Layout.astro';
+import Nav from '../components/nav.astro';
+import Home from '../components/home.astro';
+import Career from '../components/career.astro';
+import Projects from '../components/projects.astro';
+import Tech from '../components/tech.astro';
+import Contact from '../components/contact.astro';
+import Footer from '../components/footer.astro';
+import { getProfile } from '../utils/seo';
+import { localizedPath, otherLang, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const profile = getProfile(lang);
+const altUrl = localizedPath('/', otherLang(lang));
+---
+
+<Layout
+  title={profile.webpageTitle}
+  personName={profile.name}
+  description={profile.description}
+  jobTitle={profile.jobTitle}
+  keywords={profile.keywords}
+  siteUrl={profile.siteUrl}
+  twitterHandle={profile.twitterHandle}
+  ogImageUrl={profile.ogImageUrl}
+  lang={lang}
+  path="/"
+  socials={profile.socials}
+>
+  <Nav lang={lang} altUrl={altUrl} />
+  <Home lang={lang} />
+  <Career lang={lang} />
+  <Projects lang={lang} />
+  <Tech lang={lang} />
+  <Contact lang={lang} />
+  <Footer lang={lang} />
+</Layout>
